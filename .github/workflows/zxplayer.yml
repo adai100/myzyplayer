@@ -27,7 +27,7 @@ jobs:
           cd ZyPlayer
 
           ls -all          
-          rm -rf .git
+          # rm -rf .git
           rm -rf .github
           ls -all
           git config --global user.email 2486251172@qq.com
