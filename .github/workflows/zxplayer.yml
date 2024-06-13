@@ -42,7 +42,7 @@ jobs:
             ls
             ls ./dist/
             mkdir -p /opt/images/
-            sudo mv ./dist/zyplayer-linux-3.3.7-arm64.AppImage /opt/images/
+            sudo mv ./dist/*.* /opt/images/
         
 
         - name: Upload packages
