@@ -25,13 +25,14 @@ jobs:
           pwd
           git clone --depth=1 https://github.com/hjdhnx/ZyPlayer.git 
           cd ZyPlayer
+
           ls -all          
           rm -rf .git
           rm -rf .github
           ls -all
           git config --global user.email 2486251172@qq.com
           git config --global user.name hbyhzx
-
+          git init
           git add .
           git commit -m "APP"
       - name: Push changes
