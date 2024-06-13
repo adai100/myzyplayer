@@ -30,9 +30,10 @@ jobs:
             sudo apt-get -y install unzip curl wget 
             curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
             sudo apt-get update
-            sudo apt-get install -y nodejs npm
-            sudo npm install --global yarn
-            nodejs --version
+            sudo apt-get install -y nodejs
+            node --version
+            npm install --global yarn
+            node -v
     # steps:
     #   - name: Clone source code
     #     run: |
