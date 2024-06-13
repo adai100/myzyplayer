@@ -41,64 +41,22 @@ jobs:
             yarn build:linux
             ls
             ls ./dist/
-    # steps:
-    #   - name: Clone source code
-    #     run: |
-    #       pwd
-    #       git clone --depth=1 https://github.com/hjdhnx/ZyPlayer.git 
-    #       cp -R ZyPlayer/* ./
+            mkdir -p /opt/images/
+            sudo mv ./dist/zyplayer-linux-3.3.7-arm64.AppImage /opt/images/
+        
 
-    #       ls -all          
-    #       # rm -rf .git
-    #       rm -rf .github
-    #       ls -all
-    #       git config --global user.email 2486251172@qq.com
-    #       git config --global user.name hbyhzx
-    #       git init
-    #       git add .
-    #       git commit -m "APP"
-    #   - name: Push changes
-    #     uses: ad-m/github-push-action@master
-    #     with:
-    #       github_token: ${{ secrets.GITHUB_TOKEN }}
-    #       branch: ${{ github.ref }}
-    #   #     # yarn add electron-vite -D
-    #   #     # yarn build:linux
-    #   #     # cp ./dist/*.AppImage ../
-    #   #     # cd ../
-    #   #     # rm -rf ZyPlayer/
-    #   #     pwd
-    #   # - name: Check out Git repository
-    #   #   uses: actions/checkout@v4
-    #   #   with:
-    #   #     submodules: "recursive"
-    #   # - name: Install Node.js 18.x
-    #   #   uses: actions/setup-node@v4
-    #   #   with:
-    #   #     node-version: 18.18.0
-    #   #     cache: 'yarn'
-    #   # - name: Clone source code
-    #   #   run: |
-    #   #     pwd
-    #   #     git clone --depth=1 https://github.com/hjdhnx/ZyPlayer.git 
-    #   #     ls
-    #   #     yarn add electron-vite -D
-    #   #     yarn build:linux
-    #   #     cp ./dist/*.AppImage ../
-    #   #     cd ../
-    #   #     rm -rf ZyPlayer/
-    #   # - name: Upload packages
-    #   #   uses: actions/upload-artifact@master
-    #   #   if: always()
-    #   #   with:
-    #   #     name: zyplayer-linux-appimage
-    #   #     path: /home/runner/work/adai100.github.io/adai100.github.io/ZyPlayer/dist
+        - name: Upload packages
+          uses: actions/upload-artifact@master
+          if: always()
+          with:
+            name: zyplayer-linux-appimage
+            path: /opt/images
    
-    #   # - name: Upload Firmware to Github Release
-    #   #   uses: svenstaro/upload-release-action@v2
-    #   #   with:
-    #   #     repo_token: ${{ secrets.GITHUB_TOKEN }}
-    #   #     file: /home/runner/work/adai100.github.io/adai100.github.io/ZyPlayer/dist/*.AppImage*
-    #   #     tag: ${{ github.ref }}
-    #   #     overwrite: true
-    #   #     file_glob: true
+        - name: Upload Firmware to Github Release
+          uses: svenstaro/upload-release-action@v2
+          with:
+            repo_token: ${{ secrets.GITHUB_TOKEN }}
+            file: /opt/images/*
+            tag: ${{ github.ref }}
+            overwrite: true
+            file_glob: true
