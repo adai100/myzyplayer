@@ -45,14 +45,14 @@ jobs:
             sudo mv ./dist/*.* /opt/images/
         
 
-        - name: Upload packages
+        - name: Upload ZyPlayer
           uses: actions/upload-artifact@master
           if: always()
           with:
             name: zyplayer-linux-appimage
             path: /opt/images
    
-        - name: Upload Firmware to Github Release
+        - name: Upload ZyPlayer to Github Release
           uses: svenstaro/upload-release-action@v2
           with:
             repo_token: ${{ secrets.GITHUB_TOKEN }}
