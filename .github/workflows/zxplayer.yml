@@ -43,7 +43,7 @@ jobs:
             ls ./dist/
             mkdir -p /opt/images/
             sudo mv ./dist/*.* /opt/images/
-        
+            echo "tag=3.37" >> $GITHUB_ENV
 
         - name: Upload ZyPlayer
           uses: actions/upload-artifact@master
