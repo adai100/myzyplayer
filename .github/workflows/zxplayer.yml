@@ -45,16 +45,16 @@ jobs:
             sudo mv ./dist/*.* /opt/images/
             
 
-            echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
+            echo "tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
             echo "status=success" >> $GITHUB_OUTPUT
             # echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
 
-        - name: Upload ZyPlayer
-          uses: actions/upload-artifact@master
-          if: always()
-          with:
-            name: zyplayer-linux-appimage
-            path: /opt/images
+        # - name: Upload ZyPlayer
+        #   uses: actions/upload-artifact@master
+        #   if: always()
+        #   with:
+        #     name: zyplayer-linux-appimage
+        #     path: /opt/images
    
         - name: Upload ZyPlayer to Github Release
           uses: svenstaro/upload-release-action@v2
