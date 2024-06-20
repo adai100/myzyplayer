@@ -44,7 +44,7 @@ jobs:
             mkdir -p /opt/images/
             sudo mv ./dist/*.* /opt/images/
             
-            echo "tag=3.37" >> $GITHUB_ENV
+            # echo "tag=3.37" >> $GITHUB_ENV
             echo "status=success" >> $GITHUB_OUTPUT
             echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
             touch release.txt
