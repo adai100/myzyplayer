@@ -46,7 +46,7 @@ jobs:
             sudo mv ./dist/*.* /opt/images/
             
 
-            echo "tag=ZyPlayer-$(jq -r .version package.json) for $(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
+            echo "tag=ZyPlayer_$(jq -r .version package.json)_for_$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
             echo "status=success" >> $GITHUB_OUTPUT
             # echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
 
