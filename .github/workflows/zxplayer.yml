@@ -44,11 +44,11 @@ jobs:
             mkdir -p /opt/images/
             sudo mv ./dist/*.* /opt/images/
             
-            # echo "tag=3.37" >> $GITHUB_ENV
+
+            echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
             echo "status=success" >> $GITHUB_OUTPUT
-            echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
-            touch release.txt
-            echo "text"  > release.txt
+            # echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
+
         - name: Upload ZyPlayer
           uses: actions/upload-artifact@master
           if: always()
@@ -61,15 +61,15 @@ jobs:
           with:
             repo_token: ${{ secrets.GITHUB_TOKEN }}
             file: /opt/images/*
-            tag:  ${{ startsWith(github.ref, 'refs/tags/v') }}
+            tag:  ${{ env.tag }}
             overwrite: true
             file_glob: true
-        - name: Upload ZyPlayer to release
-          uses: softprops/action-gh-release@master
-          if: steps.tag.outputs.status == 'success'
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            tag_name: ${{ steps.tag.outputs.release_tag }}
-            body_path: release.txt
-            files: /opt/images/*
+        # - name: Upload ZyPlayer to release
+        #   uses: softprops/action-gh-release@master
+        #   if: steps.tag.outputs.status == 'success'
+        #   env:
+        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #   with:
+        #     tag_name: ${{ steps.tag.outputs.release_tag }}
+        #     body_path: release.txt
+        #     files: /opt/images/*
