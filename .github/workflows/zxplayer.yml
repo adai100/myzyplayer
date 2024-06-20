@@ -27,7 +27,7 @@ jobs:
             DEBIAN_FRONTEND: noninteractive
           run: |
             sudo apt-get update
-            sudo apt-get -y install unzip curl wget git
+            sudo apt-get -y install unzip curl wget git jq
             curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
             sudo apt-get update
             sudo apt-get install -y nodejs
@@ -36,6 +36,7 @@ jobs:
             node -v
             git clone --depth=1 https://github.com/hjdhnx/ZyPlayer.git 
             cd ZyPlayer
+
             export GH_TOKEN=${{ secrets.GITHUB_TOKEN }}
             yarn add electron-vite -D
             yarn build:linux
@@ -45,7 +46,7 @@ jobs:
             sudo mv ./dist/*.* /opt/images/
             
 
-            echo "tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
+            echo "tag=ZyPlayer-$(jq -r .version package.json) for $(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
             echo "status=success" >> $GITHUB_OUTPUT
             # echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
 
